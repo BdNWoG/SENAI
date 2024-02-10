@@ -25,19 +25,19 @@ knn.fit(children_skills)
 _, nearest_child_index = knn.kneighbors(activity_difficulty.reshape(1, -1))
 matched_child_rating = children_skills[nearest_child_index]
 
-# Step 4: Calculate improvement
+# Calculate improvement
 def calculate_improvement(child_rating, activity_difficulty):
     return np.clip(np.random.normal(loc=5, scale=2, size=num_dimensions), 0, None)
 
 improvement = calculate_improvement(matched_child_rating, activity_difficulty)
 
-# Step 5: Update ratings
+# Update ratings
 def update_ratings(old_rating, improvement):
     return old_rating + improvement
 
 new_child_rating = update_ratings(child_skills, improvement)
 
-# Step 6: Predict new ratings for the child
+# Predict new ratings for the child
 def predict_ratings(child_skills, activities_difficulty):
     return child_skills + np.random.normal(loc=0, scale=2, size=num_dimensions)
 
